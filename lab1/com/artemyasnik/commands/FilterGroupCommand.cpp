@@ -1,4 +1,4 @@
-#include "FilterGroupCommand.hpp"
+#include "interfaces/FilterGroupCommand.hpp"
 #include <iostream>
 #include <string>
 

@@ -15,6 +15,8 @@ public:
     Invoker() = default;
     ~Invoker();
 
+    void init(Database& db); 
+
     void setCommand(int key, ICommand* cmd);
     std::string runCommand(int key);
 };

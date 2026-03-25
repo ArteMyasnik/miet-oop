@@ -1,4 +1,4 @@
-#include "AddStudentCommand.hpp"
+#include "interfaces/AddStudentCommand.hpp"
 #include <iostream>
 
 std::string AddStudentCommand::execute() {

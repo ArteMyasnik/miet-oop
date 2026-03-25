@@ -1,0 +1,7 @@
+Surname;Name;Group
+Myasnikov;Artem;11
+m;a;1
+2;2;2
+Myas;Artem;11
+Petrova;Polina;11
+Petrova;Polina;1

@@ -1,4 +1,4 @@
-#include "FindFamNameCommand.hpp"
+#include "interfaces/FindFamNameCommand.hpp"
 #include <iostream>
 
 std::string FindFamNameCommand::execute() {
