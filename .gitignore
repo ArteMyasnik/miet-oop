@@ -1,0 +1,13 @@
+# Сборка и бинарники
+build/
+bin/
+obj/
+*.o
+*.a
+*.out
+
+# Ресурсы
+resources/
+
+# Иное
+.vscode/
