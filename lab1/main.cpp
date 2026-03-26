@@ -2,6 +2,7 @@
 #include <string>
 #include <limits>
 #include <iomanip>
+#include <clocale>
 #include "com/artemyasnik/classes/Database.hpp"
 #include "com/artemyasnik/classes/Invoker.hpp"
 
@@ -34,6 +35,7 @@ int getValidatedChoice() {
 }
 
 int main() {
+    std::setlocale(LC_ALL, "Russian");
     Database db;
     db.loadFromFile("database.txt"); 
 

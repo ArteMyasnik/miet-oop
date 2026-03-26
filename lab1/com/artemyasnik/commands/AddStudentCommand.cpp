@@ -1,4 +1,6 @@
 #include "interfaces/AddStudentCommand.hpp"
+#include "../utils/StudentValidator.hpp"
+#include "../exceptions/AllExceptions.hpp"
 #include <iostream>
 
 std::string AddStudentCommand::execute() {
@@ -11,8 +13,14 @@ std::string AddStudentCommand::execute() {
     std::cout << "Группа:  "; std::cin >> g;
 
     std::cin.ignore(10000, '\n');
-    
-    db.add(new Student(f, n, g));
 
-    return "Студент " + std::string(f) + " успешно добавлен в базу данных.";
+    try {
+        StudentValidator validator(f, n, g);
+        validator.validate(); 
+
+        db.add(new Student(f, n, g));
+        
+        return "Система: Студент " + std::string(f) + " успешно добавлен.";
+
+    } catch (const ValidationError& e) { return e.what(); }
 }
