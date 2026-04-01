@@ -1,5 +1,6 @@
 # Сборка и бинарники
 build/
+*/build/
 bin/
 obj/
 *.o

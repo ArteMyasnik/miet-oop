@@ -7,18 +7,13 @@
 #include "com/artemyasnik/classes/Invoker.hpp"
 
 void printMenu() {
-    const int menuWidth = 45;
-    std::cout << std::setfill('.');
-
-    std::cout << std::left << std::setw(menuWidth) << "Добавить новый элемент " << " 1" << std::endl;
-    std::cout << std::left << std::setw(menuWidth) << "Распечатать базу студентов " << " 2" << std::endl;
-    std::cout << std::left << std::setw(menuWidth) << "Поиск студента по ФИО " << " 3" << std::endl;
-    std::cout << std::left << std::setw(menuWidth) << "Фильтр по номеру группы " << " 4" << std::endl;
-    std::cout << std::left << std::setw(menuWidth) << "Выход из программы " << " 5" << std::endl;
-
-    std::cout << std::setfill(' ');
-    
-    std::cout << std::string(menuWidth + 5, '-') << std::endl;
+    std::cout << "\n";
+    std::cout << "1\tДобавить новый элемент" << std::endl;
+    std::cout << "2\tРаспечатать базу студентов" << std::endl;
+    std::cout << "3\tПоиск студента по ФИО" << std::endl;
+    std::cout << "4\tФильтр по номеру группы" << std::endl;
+    std::cout << "5\tВыход из программы" << std::endl;
+    std::cout << "------------------------" << std::endl;
     std::cout << "Введите номер функции: ";
 }
 

@@ -25,27 +25,24 @@ void Database::findByName(const char* f, const char* n) const {
     for (auto s : students) {
         if (std::strcmp(s->getFam(), f) == 0 && std::strcmp(s->getName(), n) == 0) {
             if (!found) {
-                std::cout << std::left << std::setw(20) << "Фамилия" 
-                          << std::setw(20) << "Имя" << "Группа" << std::endl;
-                std::cout << "---------------------------------------" << std::endl;
+                std::cout << "\nФамилия\t\tИмя\t\tГруппа" << std::endl;
+                std::cout << "----------------------------------------" << std::endl;
             }
             s->printEntity();
             found = true;
         }
     }
-    if (!found) std::cout << "Student is not found" << std::endl;
+    if (!found) std::cout << "Студент не найден" << std::endl;
 }
 
-void Database::filterByGroup(int groupNumber) const {
+void Database::filterByGroup(unsigned int groupNumber) const {
     bool found = false;
     
     for (auto s : students) {
         if (s->getGrup() == groupNumber) {
             if (!found) {
-                std::cout << std::left << std::setw(20) << "Фамилия" 
-                          << std::setw(20) << "Имя" 
-                          << "Группа" << std::endl;
-                std::cout << "---------------------------------------" << std::endl;
+                std::cout << "\nФамилия\t\tИмя\t\tГруппа" << std::endl;
+                std::cout << "----------------------------------------" << std::endl;
             }
             s->printEntity();
             found = true;

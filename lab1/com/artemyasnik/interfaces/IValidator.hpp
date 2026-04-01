@@ -1,5 +1,5 @@
-#ifndef IVALIDATOR_HPP
-#define IVALIDATOR_HPP
+#ifndef IVALIDATOR_H
+#define IVALIDATOR_H
 
 class IValidator {
 public:

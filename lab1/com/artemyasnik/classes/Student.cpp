@@ -20,8 +20,8 @@ Student::~Student() {
 
 const char* Student::getFam() const { return fam; }
 const char* Student::getName() const { return name; }
-int Student::getGrup() const { return grup; }
+unsigned int Student::getGrup() const { return grup; }
 
 void Student::printEntity() {
-    std::cout << getFam() << "\t" << getName() << "\t" << getGrup() << std::endl;
+    std::cout << getFam() << "\t\t" << getName() << "\t\t" << getGrup() << std::endl;
 }

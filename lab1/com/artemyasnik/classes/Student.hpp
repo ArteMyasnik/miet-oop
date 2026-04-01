@@ -8,7 +8,7 @@ class Student : public IPrintable {
     private:
         char* fam;
         char* name;
-        int grup;
+        unsigned int grup;
     public:
         Student(const char* f, const char* n, const int g);
         virtual ~Student();
@@ -17,7 +17,7 @@ class Student : public IPrintable {
         
         const char* getFam() const;
         const char* getName() const;
-        int getGrup() const;
+        unsigned int getGrup() const;
 };
 
 #endif
