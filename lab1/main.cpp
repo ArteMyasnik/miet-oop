@@ -12,7 +12,10 @@ void printMenu() {
     std::cout << "2\tРаспечатать базу студентов" << std::endl;
     std::cout << "3\tПоиск студента по ФИО" << std::endl;
     std::cout << "4\tФильтр по номеру группы" << std::endl;
-    std::cout << "5\tВыход из программы" << std::endl;
+    std::cout << "5\tРаспечатать базу студентов через оператор <<" << std::endl;
+    std::cout << "6\tРаспечатать базу студентов через оператор -" << std::endl;
+    std::cout << "7\tСравнение студентов с датой" << std::endl;
+    std::cout << "8\tВыход из программы" << std::endl;
     std::cout << "------------------------" << std::endl;
     std::cout << "Введите номер функции: ";
 }
@@ -46,7 +49,7 @@ int main() {
             std::cout << "\n[Ошибка]: Пожалуйста, введите целое число!" << std::endl;
             continue;
         }
-        if (choice == 5) { break; }
+        if (choice == 8) { break; }
         std::string result = invoker.runCommand(choice);
         std::cout << "\n>>> " << result << "\n" << std::endl;
     }

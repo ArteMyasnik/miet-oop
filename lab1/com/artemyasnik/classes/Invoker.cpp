@@ -15,6 +15,9 @@ void Invoker::init(Database& db) {
     setCommand(2, new PrintCommand(db));
     setCommand(3, new FindFamNameCommand(db));
     setCommand(4, new FilterGroupCommand(db));
+    setCommand(5, new UnaryMinusOpeatorCommand(db));
+    setCommand(6, new OStreamOperatorCommand(db));
+    setCommand(7, new CompareWithDateCommand(db));
 }
 
 std::string Invoker::runCommand(int key) {

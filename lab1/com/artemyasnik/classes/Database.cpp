@@ -6,7 +6,6 @@
 #include <sstream>
 #include "Database.hpp"
 
-
 Database::Database() {}
 
 Database::~Database() { clear(); }
@@ -25,8 +24,8 @@ void Database::findByName(const char* f, const char* n) const {
     for (auto s : students) {
         if (std::strcmp(s->getFam(), f) == 0 && std::strcmp(s->getName(), n) == 0) {
             if (!found) {
-                std::cout << "\nФамилия\t\tИмя\t\tГруппа" << std::endl;
-                std::cout << "----------------------------------------" << std::endl;
+                std::cout << "\nФамилия\t\tИмя\t\tГруппа\t\tДата рождения" << std::endl;
+                std::cout << "--------------------------------------------------------" << std::endl;
             }
             s->printEntity();
             found = true;
@@ -35,14 +34,14 @@ void Database::findByName(const char* f, const char* n) const {
     if (!found) std::cout << "Студент не найден" << std::endl;
 }
 
-void Database::filterByGroup(unsigned int groupNumber) const {
+void Database::filterByGroup(int groupNumber) const {
     bool found = false;
     
     for (auto s : students) {
         if (s->getGrup() == groupNumber) {
             if (!found) {
-                std::cout << "\nФамилия\t\tИмя\t\tГруппа" << std::endl;
-                std::cout << "----------------------------------------" << std::endl;
+                std::cout << "\nФамилия\t\tИмя\t\tГруппа\t\tДата рождения" << std::endl;
+                std::cout << "--------------------------------------------------------" << std::endl;
             }
             s->printEntity();
             found = true;
@@ -60,11 +59,15 @@ void Database::saveToFile(const std::string& filename) {
         std::cerr << "Ошибка: Не удалось открыть файл для записи!" << std::endl;
         return;
     }
-    out << "Surname;Name;Group\n";
+    out << "Surname;Name;Group;Day;Month;Year\n";
     for (auto s : students) {
+        Student::Date birthday = s->getBirthday();
         out << s->getFam() << ";" 
             << s->getName() << ";" 
-            << s->getGrup() << "\n";
+            << s->getGrup() << ";"
+            << birthday.getDay() << ";"
+            << birthday.getMonth() << ";"
+            << birthday.getYear() << "\n";
     }
     out.close();
 }
@@ -75,21 +78,27 @@ void Database::loadFromFile(const std::string& filename) {
 
     std::string line;
     clear();
-    std::getline(in, line); 
+    std::getline(in, line);
 
     while (std::getline(in, line)) {
         if (line.empty()) continue;
 
         std::stringstream ss(line);
-        std::string f, n, g_str;
+        std::string f, n, g_str, day_str, month_str, year_str;
 
         if (std::getline(ss, f, ';') && 
             std::getline(ss, n, ';') && 
-            std::getline(ss, g_str)) {
+            std::getline(ss, g_str, ';') &&
+            std::getline(ss, day_str, ';') &&
+            std::getline(ss, month_str, ';') &&
+            std::getline(ss, year_str)) {
             
             try {
                 int g = std::stoi(g_str);
-                add(new Student(f.c_str(), n.c_str(), g));
+                int day = std::stoi(day_str);
+                int month = std::stoi(month_str);
+                int year = std::stoi(year_str);
+                add(new Student(f.c_str(), n.c_str(), g, day, month, year));
             } catch (...) {
                 continue;
             }

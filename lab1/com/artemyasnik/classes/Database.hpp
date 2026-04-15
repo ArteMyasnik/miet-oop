@@ -17,7 +17,7 @@ public:
     void clear();
     
     void findByName(const char* f, const char* n) const;
-    void filterByGroup(unsigned int groupNumber) const;
+    void filterByGroup(int groupNumber) const;
     
     void saveToFile(const std::string& filename);
     void loadFromFile(const std::string& filename);

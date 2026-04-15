@@ -3,7 +3,7 @@
 #include <string>
 
 std::string FilterGroupCommand::execute() {
-    unsigned int g;
+    int g;
 
     std::cout << "--- ФИЛЬТР ПО НОМЕРУ ГРУППЫ ---" << std::endl;
     std::cout << "Введите номер группы: "; 

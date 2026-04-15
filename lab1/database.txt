@@ -1,6 +1,2 @@
-Surname;Name;Group
-Myasnikov;Artem;11
-m;a;1
-Myas;Artem;11
-Petrova;Polina;11
-Petrova;Polina;1
+Surname;Name;Group;Day;Month;Year
+Aas;Ass;1;1;1;2020
