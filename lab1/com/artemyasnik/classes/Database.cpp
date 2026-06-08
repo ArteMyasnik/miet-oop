@@ -2,8 +2,8 @@
 #include <fstream>
 #include <cstring>
 #include <iomanip>
-#include <fstream>
 #include <sstream>
+#include <algorithm>
 #include "Database.hpp"
 
 Database::Database() {}
@@ -19,36 +19,39 @@ void Database::clear() {
     students.clear();
 }
 
+
 void Database::findByName(const char* f, const char* n) const {
-    bool found = false;
-    for (auto s : students) {
-        if (std::strcmp(s->getFam(), f) == 0 && std::strcmp(s->getName(), n) == 0) {
-            if (!found) {
-                std::cout << "\nФамилия\t\tИмя\t\tГруппа\t\tДата рождения" << std::endl;
-                std::cout << "--------------------------------------------------------" << std::endl;
-            }
-            s->printEntity();
-            found = true;
-        }
+    std::vector<Student*> found;
+    std::copy_if(students.begin(), students.end(), std::back_inserter(found),
+        [f, n](Student* s) {
+            return std::strcmp(s->getFam(), f) == 0 && 
+                   std::strcmp(s->getName(), n) == 0;
+        });
+    
+    if (!found.empty()) {
+        std::cout << "\nФамилия\t\tИмя\t\tГруппа\t\tДата рождения" << std::endl;
+        std::cout << "--------------------------------------------------------" << std::endl;
+        std::for_each(found.begin(), found.end(),
+            [](Student* s) { s->printEntity(); });
+    } else {
+        std::cout << "Студент не найден" << std::endl;
     }
-    if (!found) std::cout << "Студент не найден" << std::endl;
 }
 
+
 void Database::filterByGroup(int groupNumber) const {
-    bool found = false;
+    std::vector<Student*> filtered;
+    std::copy_if(students.begin(), students.end(), std::back_inserter(filtered),
+        [groupNumber](Student* s) { 
+            return s->getGrup() == groupNumber;
+        });
     
-    for (auto s : students) {
-        if (s->getGrup() == groupNumber) {
-            if (!found) {
-                std::cout << "\nФамилия\t\tИмя\t\tГруппа\t\tДата рождения" << std::endl;
-                std::cout << "--------------------------------------------------------" << std::endl;
-            }
-            s->printEntity();
-            found = true;
-        }
-    }
-    
-    if (!found) {
+    if (!filtered.empty()) {
+        std::cout << "\nФамилия\t\tИмя\t\tГруппа\t\tДата рождения" << std::endl;
+        std::cout << "--------------------------------------------------------" << std::endl;
+        std::for_each(filtered.begin(), filtered.end(),
+            [](Student* s) { s->printEntity(); }); 
+    } else {
         std::cout << "Записей для группы " << groupNumber << " не найдено." << std::endl;
     }
 }

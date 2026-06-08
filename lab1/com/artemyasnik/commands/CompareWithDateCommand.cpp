@@ -1,6 +1,7 @@
 #include "CompareWithDateCommand.hpp"
 #include <iostream>
 #include <sstream>
+#include <algorithm>
 
 std::string CompareWithDateCommand::execute() {
     const std::vector<Student*>& list = db.getAll();
@@ -22,17 +23,21 @@ std::string CompareWithDateCommand::execute() {
     ss << "\n--- Результат сравнения с датой " << day << "." << month << "." << year << " ---\n";
     ss << "--------------------------------------------------\n";
     
-    bool found = false;
-    for (auto student : list) {
-        if (*student == targetDate) {
-            ss << "День рождения совпадает у: " << student->getFam() 
-               << " " << student->getName() 
-               << " (группа " << student->getGrup() << ")\n";
-            found = true;
-        }
+    std::vector<Student*> found;
+    std::copy_if(list.begin(), list.end(), std::back_inserter(found),
+        [&targetDate](Student* s) {
+            return *s == targetDate;
+        });
+    
+    if (!found.empty()) {
+        std::for_each(found.begin(), found.end(),
+            [&ss](Student* s) {
+                ss << *s << std::endl;
+            });
+    } else {
+        ss << "Нет студентов с днём рождения " << day << "." << month << "." << year << "\n";
     }
     
-    if (!found) { ss << "Нет студентов с днём рождения " << day << "." << month << "." << year << "\n"; }
     ss << "--------------------------------------------------\n";
     std::cout << ss.str() << std::endl;
     return "Отчет сформирован успешно.";

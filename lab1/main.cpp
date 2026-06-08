@@ -52,6 +52,9 @@ int main() {
         if (choice == 8) { break; }
         std::string result = invoker.runCommand(choice);
         std::cout << "\n>>> " << result << "\n" << std::endl;
+
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
 
     db.saveToFile("database.txt");

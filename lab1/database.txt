@@ -1,2 +1,7 @@
 Surname;Name;Group;Day;Month;Year
 Aas;Ass;1;1;1;2020
+a;a;1;1;1;2000
+aa;aa;1;1;1;2000
+q;q;2;1;1;2000
+w;w;2;2;2;2000
+w;w;3;4;4;2000
